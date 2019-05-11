@@ -12,6 +12,24 @@ public class StringProcessor {
     private String text;
     private int num;
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+
+
 
     public StringProcessor() {
 
@@ -36,14 +54,14 @@ public class StringProcessor {
     public final String formattingText() {
 
         StringBuffer sBuffer = new StringBuffer();
-        String[] sentences = text.split("\\\\s+");
-        String regex = String.format("\\\\d{%d}(.docx|.doc|.txt|.odb)$", num);
+        String[] sentences = text.split("\\s+");
+        String regex = String.format("\\d{%d}(.docx|.doc|.txt|.odb)$", num);
         Pattern pattern = Pattern.compile(regex);
 
         for (String sentence : sentences) {
 
             Matcher matcher = pattern.matcher(sentence);
-            if (!matcher.find()) {
+            if (matcher.find()) {
 
                 sBuffer.append(sentence);
                 sBuffer.append(" ");
@@ -51,5 +69,18 @@ public class StringProcessor {
         }
 
         return sBuffer.toString().trim();
+    }
+
+    public final String showText(){
+
+        if (text != " "){
+
+            return this.text;
+        } else {
+
+            return "text empty";
+        }
+
+
     }
 }
